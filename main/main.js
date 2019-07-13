@@ -52,3 +52,26 @@ const getTotalPromotion = (itemList) => {
     });
     return promotionItemList;
 }
+
+const createReceipt = (itemList,totalPrice,promotionItemList) => {
+    let head='***<没钱赚商店>收据***';
+    let name='名称：';
+    let count='数量：';
+    let price='单价：';
+    let subTotal='小计：';
+    let total='总计：';
+    let separator='----------------------';
+    let save='节省：';
+    let end='**********************';
+    let promotion=0;
+    let receipt=`${head}`+'\n';
+    let i=0;
+    itemList.forEach(item=>{
+        receipt+=`${name}`+item['item']['name']+'，'+`${count}`+item['count']+item['item']['unit']+'，'+`${price}`+item['item']['price']+'，'+`${subTotal}`+promotionItemList[i++]['promotionTotal'].toFixed(2)+'(元)\n';
+    })
+    promotionItemList.forEach(item=>{
+        promotion+=item['promotionTotal'];
+    })
+    receipt+=`${separator}`+'\n'+`${total}`+totalPrice.toFixed(2)+'(元)\n'+`${save}`+(totalPrice-promotion).toFixed(2)+'(元)\n'+`${end}`;
+    return receipt;
+}
