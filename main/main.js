@@ -21,3 +21,13 @@ const getItemList = (barcodes) => {
     }
     return itemList;
     }
+
+const calculateCostItem = (itemList) => {
+    let subTotal=[];
+    itemList.forEach(element => {
+        subTotal.push({'item':element["item"],'total':element["item"]['price']*element['count']});
+    });
+    console.log(subTotal);
+    return subTotal;
+}
+
