@@ -27,7 +27,13 @@ const calculateCostItem = (itemList) => {
     itemList.forEach(element => {
         subTotal.push({'item':element["item"],'total':element["item"]['price']*element['count']});
     });
-    console.log(subTotal);
     return subTotal;
 }
 
+const calculateTotalPrice = (subTotal) => {
+    let totalPrice=0;
+    subTotal.forEach(item=>{
+        totalPrice+=item['total'];
+    })
+    return totalPrice;
+}

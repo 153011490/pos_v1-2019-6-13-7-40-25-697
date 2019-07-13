@@ -35,6 +35,12 @@ describe('pos', () => {
       let actual=calculateCostItem(getItemList(tags));
       expect(actual).toEqual(expected);
    })
+
+   it('should return 66',()=>{
+    let expected=66;
+    let actual=calculateTotalPrice(calculateCostItem(getItemList(tags)));
+    expect(actual).toEqual(expected);
+ })
    
 
   });
