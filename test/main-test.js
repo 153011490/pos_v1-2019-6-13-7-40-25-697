@@ -37,8 +37,18 @@ describe('pos', () => {
    })
 
    it('should return 66',()=>{
-    let expected=66;
-    let actual=calculateTotalPrice(calculateCostItem(getItemList(tags)));
+      let expected=66;
+      let actual=calculateTotalPrice(calculateCostItem(getItemList(tags)));
+      expect(actual).toEqual(expected);
+  })
+
+  it('should return subTotal[{item:object,promotionTotal:number}]',()=>{
+    let expected=[
+      {"item":{barcode: 'ITEM000001',name: '雪碧',unit: '瓶',price: 3.00},"promotionTotal":9},
+      {"item":{barcode: 'ITEM000003',name: '荔枝',unit: '斤',price: 15.00},"promotionTotal":37.5},
+      {"item": {barcode: 'ITEM000005',name: '方便面',unit: '袋',price: 4.50},"promotionTotal":9}
+    ];
+    let actual=getTotalPromotion(getItemList(tags));
     expect(actual).toEqual(expected);
  })
    

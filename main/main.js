@@ -37,3 +37,18 @@ const calculateTotalPrice = (subTotal) => {
     })
     return totalPrice;
 }
+
+const getTotalPromotion = (itemList) => {
+    let promotionList=loadPromotions();
+    let promotionItemList=[];
+    itemList.forEach(element => {
+        promotionList.forEach(item=>{
+            if(item['barcodes'].includes(element["item"]['barcode'])&&item['type']=='BUY_TWO_GET_ONE_FREE'){
+                promotionItemList.push({'item':element["item"],'promotionTotal':element["item"]['price']*(element['count']-Math.floor(element['count']/2))});
+            }else{
+                promotionItemList.push({'item':element["item"],'promotionTotal':element["item"]['price']*element['count']});
+            }
+        })
+    });
+    return promotionItemList;
+}
